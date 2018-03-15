@@ -38,3 +38,16 @@ add_executable(yuv-player
 target_link_libraries(yuv-player
 	${ALL_LIBS}
 )
+
+cmake_policy(SET CMP0026 OLD)
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/rpavlik-cmake-modules")
+include(CreateLaunchers)
+
+# Xcode and Visual working directories
+set_target_properties(yuv-player PROPERTIES XCODE_ATTRIBUTE_CONFIGURATION_BUILD_DIR "${CMAKE_CURRENT_SOURCE_DIR}/player/")
+create_target_launcher(yuv-player WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/player/")
+
+add_custom_command(TARGET yuv-player POST_BUILD        # Adds a post-build event to MyTest
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different  # which executes "cmake - E copy_if_different..."
+        "$<TARGET_FILE_DIR:glew>/$<TARGET_FILE_NAME:glew>"      # <--this is in-file
+        $<TARGET_FILE_DIR:yuv-player>)                 # <--this is out-file path

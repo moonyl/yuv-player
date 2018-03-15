@@ -19,6 +19,22 @@ add_subdirectory (glew-2.1.0/build/cmake)
 add_subdirectory (glfw)
 add_subdirectory (glm)
 
+include_directories(
+	glfw/include/
+	glew-2.1.0/include/
+)
+
+set(ALL_LIBS
+	${OPENGL_LIBRARY}
+	glfw
+	glew
+)
+
 # yuv-player
 add_executable(yuv-player
-	player/yuv-player.cpp)
+	player/yuv-player.cpp
+)
+
+target_link_libraries(yuv-player
+	${ALL_LIBS}
+)

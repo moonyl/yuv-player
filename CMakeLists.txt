@@ -18,3 +18,7 @@ endif()
 add_subdirectory (glew-2.1.0/build/cmake)
 add_subdirectory (glfw)
 add_subdirectory (glm)
+
+# yuv-player
+add_executable(yuv-player
+	player/yuv-player.cpp)

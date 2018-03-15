@@ -17,3 +17,4 @@ endif()
 # Compile external dependencies 
 add_subdirectory (glew-2.1.0/build/cmake)
 add_subdirectory (glfw)
+add_subdirectory (glm)

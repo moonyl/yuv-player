@@ -13,3 +13,6 @@ endif()
 if( CMAKE_BINARY_DIR MATCHES " " )
  message( "Your Build Directory contains spaces. If you experience problems when compiling, this can be the cause." )
 endif()
+
+# Compile external dependencies 
+add_subdirectory (glew-2.1.0/build/cmake)

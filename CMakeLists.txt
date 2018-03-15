@@ -22,6 +22,7 @@ add_subdirectory (glm)
 include_directories(
 	glfw/include/
 	glew-2.1.0/include/
+	gl-common/
 )
 
 set(ALL_LIBS
@@ -33,6 +34,11 @@ set(ALL_LIBS
 # yuv-player
 add_executable(yuv-player
 	player/yuv-player.cpp
+
+	player/videoCoordLoading.vs
+	player/colorSpaceConversion.fs
+
+	gl-common/shader.cpp
 )
 
 target_link_libraries(yuv-player
